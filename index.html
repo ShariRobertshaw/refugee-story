@@ -204,7 +204,8 @@ section{position:relative}
 .intro .display{font-size:clamp(2.6rem,6vw,6.4rem);line-height:.98;margin:20px 0 48px;max-width:18ch}
 .intro .lead{font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.2;max-width:26ch;margin-bottom:40px}
 .intro .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,64px);max-width:1100px}
-.intro .handoff{margin-top:clamp(64px,12vh,120px)}
+.intro .handoff{margin-top:clamp(96px,16vh,180px);border-top:1px solid var(--ink-faint);padding-top:clamp(24px,4vh,40px);max-width:1100px}
+.intro .handoff-line{font-family:var(--serif);font-weight:100;font-size:clamp(2rem,4.2vw,4.2rem);line-height:1.02;letter-spacing:-.01em;max-width:20ch;margin:18px 0 0}
 /* verdict: a flash, then the page turns light from here on */
 .verdict{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,16vh,180px) 0}
 .verdict .display{font-size:clamp(3rem,8.4vw,9.5rem);font-weight:100;line-height:.95;margin:20px 0 40px;max-width:14ch}
@@ -228,9 +229,8 @@ body.light .chrome{mix-blend-mode:normal}
 .epilogue .closing-text .body{margin:0;color:var(--ink)}
 @media (max-width:760px){.epilogue .closing{grid-template-columns:1fr}}
 /* longer descriptions read better in Geist than in mono */
-.interlude .sub,.stat .l,.g-track figcaption,.intro .handoff{font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.15vw,17px);
+.interlude .sub,.stat .l,.g-track figcaption{font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.15vw,17px);
   letter-spacing:0;text-transform:none;line-height:1.45}
-.intro .handoff{font-size:clamp(17px,1.4vw,20px);color:var(--ink-dim)}
 
 .snap-cap{margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);line-height:1.6}
 .photo.own img{filter:grayscale(.35) contrast(1.05) brightness(.7)}
@@ -300,14 +300,17 @@ body.light .chrome{mix-blend-mode:normal}
 <!-- INTRO -->
 <section class="intro">
   <div class="wrap">
-    <p class="kicker rv">Calais, February 2016 · Name changed</p>
-    <h2 class="display rv">Karim is twenty-two, and he is trying to reach <span class="signal">England.</span></h2>
-    <p class="lead rv">In February 2016 he was living in the Calais “Jungle”, the camp on the French coast where thousands of people waited for a way across the Channel.</p>
+    <p class="kicker rv">Calais · Name changed</p>
+    <h2 class="display rv">In 2016 Karim was twenty-two and trying to reach <span class="signal">England.</span></h2>
+    <p class="lead rv">He was living in the Calais “Jungle”, the camp on the French coast where thousands of people waited for a way across the Channel.</p>
     <div class="cols">
-      <p class="body rv">He grew up in a village in Nangarhar, in eastern Afghanistan. When he was twenty-one the fighting reached his home. Land, cows and goats were sold to pay a smuggler $10,000 to get him out.</p>
-      <p class="body rv">Since leaving he has been beaten, locked up and fingerprinted, and walked through forests in the snow and rain. From Calais he has tried to reach England ten times.</p>
+      <p class="body rv">He grew up in a village in Nangarhar, in eastern Afghanistan. When he was twenty-one the fighting reached his home, and his family sold their land, cows and goats to pay a smuggler $10,000 to get him out.</p>
+      <p class="body rv">On the way he was beaten, locked up and fingerprinted, and walked through forests in the snow and rain. By the time he reached Calais there was only the Channel left, and he had already tried to cross it ten times.</p>
     </div>
-    <p class="kicker handoff rv">He told me his story over tea in the camp. This is his journey, in his own words</p>
+    <div class="handoff rv">
+      <p class="kicker">Recorded in the camp, February 2016</p>
+      <p class="handoff-line">He told me his story over tea. This is his journey, <span class="signal">in his own words.</span></p>
+    </div>
   </div>
 </section>
 
