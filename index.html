@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journey from Afghanistan to Calais</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 fill=%27%23ff4d1f%27/%3E%3C/svg%3E">
+<meta name="description" content="A young man's journey from Nangarhar, Afghanistan to the Calais jungle, told in his own words.">
+
+<!-- The Henston (Adobe Fonts kit, allowed on localhost / 127.0.0.1) -->
+<link rel="stylesheet" href="https://use.typekit.net/krr1nte.css">
+<!-- Geist + Geist Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0a09;
+  --bg-2:#141210;
+  --ink:#efe8dc;
+  --ink-dim:rgba(239,232,220,.68);
+  --ink-faint:rgba(239,232,220,.14);
+  --signal:#ff4d1f;
+  --serif:"the-henston", "Iowan Old Style", Georgia, serif;
+  --sans:"Geist", system-ui, -apple-system, sans-serif;
+  --mono:"Geist Mono", ui-monospace, monospace;
+  --gutter:clamp(16px, 4vw, 56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+html.lenis, html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.5;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--signal);color:#000}
+
+/* grain */
+body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+
+/* ---------- fixed chrome ---------- */
+.chrome{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:18px var(--gutter);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  mix-blend-mode:difference;pointer-events:none}
+.chrome b{font-weight:500}
+.chrome .count{font-variant-numeric:tabular-nums}
+
+.route{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:14px var(--gutter) 18px;
+  background:linear-gradient(to top, rgba(11,10,9,.92), rgba(11,10,9,0));pointer-events:none;
+  opacity:0;transform:translateY(10px);transition:opacity .6s, transform .6s}
+.route.on{opacity:1;transform:none}
+.route ol{list-style:none;display:flex;justify-content:space-between;gap:6px;position:relative;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+.route ol::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:var(--ink-faint)}
+.route .fill{position:absolute;left:0;top:4px;height:1px;background:var(--signal);width:0;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.route li{position:relative;padding-top:16px;transition:color .4s}
+.route li::before{content:"";position:absolute;top:0;left:0;width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--ink-dim);transition:.4s}
+.route li.done{color:var(--ink)}
+.route li.done::before{background:var(--signal);border-color:var(--signal)}
+.route li.now{color:var(--signal)}
+.route li.now::before{box-shadow:0 0 0 5px rgba(255,77,31,.25)}
+.route li:last-child{text-align:right}
+.route li:last-child::before{left:auto;right:0}
+@media (max-width:760px){
+  .route li span{display:none}
+  .route li.now span{display:inline;position:absolute;white-space:nowrap;left:50%;transform:translateX(-50%)}
+  .route li:first-child.now span{left:0;transform:none}
+  .route li:last-child.now span{left:auto;right:0;transform:none}
+}
+
+/* ---------- shared ---------- */
+section{position:relative}
+.wrap{padding:0 var(--gutter);max-width:1600px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  display:flex;align-items:center;gap:12px}
+.display{font-family:var(--serif);font-weight:100;line-height:.86;letter-spacing:-.02em}
+.serif{font-family:var(--serif)}
+.quote{font-family:var(--serif);font-weight:300;font-style:italic;line-height:1.08;letter-spacing:-.01em}
+.body{font-size:clamp(16px,1.25vw,19px);color:var(--ink-dim);max-width:34em}
+.body strong{color:var(--ink);font-weight:500}
+.signal{color:var(--signal)}
+
+/* ---------- hero ---------- */
+.hero{height:100svh;min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  padding-bottom:clamp(40px,8vh,96px)}
+.hero .bg{position:absolute;inset:0;z-index:0}
+.hero .bg img{width:100%;height:115%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.45)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(11,10,9,.2) 0%, rgba(11,10,9,.4) 50%, var(--bg) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%}
+.hero h1{font-weight:100;font-size:clamp(3.2rem,10vw,11rem);line-height:.92;margin:18px 0 0 -.03em}
+.hero h1 .ch{display:inline-block}
+.hero-desc{font-family:var(--serif);font-weight:300;font-size:clamp(18px,1.7vw,24px);line-height:1.45;color:var(--ink-dim);
+  max-width:46ch;margin:32px 0 0;border-top:1px solid var(--ink-faint);padding-top:22px}
+.scroll-cue{position:absolute;right:var(--gutter);bottom:clamp(40px,8vh,96px);z-index:2;font-family:var(--mono);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;color:var(--ink-dim);
+  display:flex;align-items:center;gap:14px}
+.scroll-cue::after{content:"";width:1px;height:60px;background:linear-gradient(var(--ink-dim),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:760px){.scroll-cue{display:none}}
+
+/* ---------- statement (word reveal) ---------- */
+.statement{padding:clamp(120px,22vh,240px) 0}
+.statement p.reveal-words{font-family:var(--serif);font-weight:100;font-size:clamp(2.2rem,6.4vw,6.6rem);line-height:.98;letter-spacing:-.02em;max-width:15ch}
+.statement p .w{opacity:.14;transition:none}
+.no-js .statement p .w, .reduced .statement p .w{opacity:1}
+.statement .attrib{margin-top:36px}
+
+/* ---------- map ---------- */
+.mapsec{height:100svh;display:flex;flex-direction:column;justify-content:safe center;overflow:hidden;box-sizing:border-box;padding:clamp(64px,9vh,96px) 0 clamp(56px,8vh,88px)}
+.mapsec .wrap{width:100%}
+.mapsec h2{font-size:clamp(2.2rem,min(5vw,8vh),5.6rem);line-height:.98;max-width:22ch;margin:18px 0 10px}
+.mapsec svg{width:100%;height:auto;max-height:min(52vh,calc(100svh - 360px));overflow:visible}
+.mapsec .land{fill:none;stroke:var(--ink-faint);stroke-width:1}
+.mapsec .path{fill:none;stroke:var(--signal);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mapsec .ghost{fill:none;stroke:var(--ink-faint);stroke-width:1;stroke-dasharray:3 6}
+.mapsec .city circle{fill:var(--bg);stroke:var(--ink);stroke-width:1.2}
+.mapsec .city .card rect{fill:var(--bg);stroke:var(--ink-faint);stroke-width:1}
+.mapsec .city.end .card rect{stroke:var(--signal)}
+.mapsec .city text{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;fill:var(--ink)}
+.mapsec .city .sub{fill:var(--ink-dim);font-size:9px}
+.mapsec .city.end circle{fill:var(--signal);stroke:var(--signal)}
+.mapsec .km{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-top:10px}
+.mapsec .km b{font-family:var(--serif);font-weight:100;font-size:clamp(28px,3vw,44px);color:var(--ink);letter-spacing:0;margin-right:8px}
+
+/* ---------- chapter ---------- */
+.chapter{min-height:100svh;padding:clamp(100px,16vh,180px) 0}
+.chapter .num{font-family:var(--serif);font-weight:100;font-size:clamp(7rem,24vw,24rem);line-height:.8;
+  color:transparent;-webkit-text-stroke:1px var(--ink-faint);position:absolute;right:var(--gutter);top:clamp(60px,10vh,120px);z-index:0;pointer-events:none}
+.chapter .wrap{position:relative;z-index:1}
+.chapter h2{font-size:clamp(2.6rem,6.4vw,7rem);line-height:.98;max-width:16ch;margin:22px 0 clamp(28px,5vh,56px)}
+.chapter h2 em{font-style:normal}
+.cols{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.5vw,40px);align-items:start}
+.cols .a{grid-column:1 / span 6}
+.cols .b{grid-column:8 / span 5}
+.cols .body + .body{margin-top:1.1em}
+@media (max-width:860px){.cols .a,.cols .b{grid-column:1 / -1}}
+
+.photo{position:relative;overflow:hidden;margin:clamp(48px,9vh,110px) 0;height:clamp(320px,78vh,900px)}
+.photo img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;filter:grayscale(.85) contrast(1.1) brightness(.62)}
+.photo figcaption{position:absolute;left:var(--gutter);bottom:18px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+.photo .over{position:absolute;inset:0;z-index:1;display:flex;align-items:center;padding:0 var(--gutter)}
+.photo .over .quote{font-size:clamp(2rem,5.4vw,5.6rem);max-width:16ch;text-shadow:0 2px 40px rgba(0,0,0,.6)}
+.photo::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(11,10,9,.15), rgba(11,10,9,.7))}
+.photo.inset{margin-left:var(--gutter);margin-right:var(--gutter)}
+
+.pull{margin:clamp(60px,12vh,140px) 0;max-width:20ch;font-size:clamp(2.2rem,6vw,6rem)}
+.pull::before{content:"“";display:block;font-family:var(--serif);font-weight:900;font-style:normal;color:var(--signal);
+  font-size:1.6em;line-height:.6;margin-bottom:.1em}
+.pull.right{margin-left:auto;text-align:right}
+.pull.right::before{margin-left:auto}
+
+/* big stat */
+.stat{display:flex;align-items:flex-end;gap:clamp(16px,3vw,48px);flex-wrap:wrap;margin:clamp(40px,8vh,90px) 0;
+  border-top:1px solid var(--ink-faint);padding-top:24px}
+.stat .n{font-family:var(--serif);font-weight:100;font-size:clamp(5rem,17vw,17rem);line-height:.8;letter-spacing:-.03em;font-variant-numeric:lining-nums}
+.stat .n small{font-size:.45em;vertical-align:.7em;margin-right:.04em}
+.stat .l{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);max-width:26ch;padding-bottom:1.4em}
+
+/* inset note (explainer) */
+.note{border:1px solid var(--ink-faint);padding:clamp(22px,3vw,40px);margin:clamp(40px,8vh,90px) 0;max-width:780px;background:var(--bg-2)}
+.note .kicker{margin-bottom:14px}
+.note h3{font-family:var(--serif);font-weight:100;font-size:clamp(22px,2.4vw,32px);line-height:1.1;margin-bottom:12px}
+.note p:not(.kicker){color:var(--ink-dim);font-size:15px}
+.note p:not(.kicker) + p{margin-top:.8em}
+
+/* weather canvas */
+.weather{position:absolute;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
+
+/* ---------- interlude: full-bleed type ---------- */
+.interlude{height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.interlude .display{font-size:clamp(4rem,16vw,16rem)}
+.interlude .sub{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-top:24px}
+
+/* ---------- ledger (horizontal) ---------- */
+.ledger{height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.ledger header{padding:0 var(--gutter);margin-bottom:clamp(24px,5vh,56px)}
+.ledger header h2{font-size:clamp(2.4rem,5.6vw,6rem);line-height:.98;margin-top:18px}
+.ledger .track{display:flex;gap:clamp(16px,2vw,28px);padding:0 var(--gutter);width:max-content}
+.ledger .card{width:clamp(260px,30vw,420px);min-height:clamp(260px,42vh,420px);border:1px solid var(--ink-faint);
+  padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-2)}
+.ledger .card .n{font-family:var(--serif);font-weight:100;font-size:clamp(4rem,8vw,8rem);line-height:.85;letter-spacing:-.03em}
+.ledger .card .n.signal{color:var(--signal)}
+.ledger .card p{color:var(--ink-dim);font-size:15px;margin-top:18px}
+.ledger .card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
+@media (max-width:760px){
+  .ledger{height:auto;padding:100px 0}
+  .ledger .track{flex-direction:column;width:auto}
+  .ledger .card{width:auto;min-height:0}
+}
+
+/* ---------- ending ---------- */
+.ending{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(120px,20vh,220px) 0}
+.ending .display{font-size:clamp(3.6rem,12vw,13rem)}
+.ending .display em{font-style:normal;color:var(--signal)}
+.ending .body{margin-top:40px}
+
+.intro{padding:clamp(120px,22vh,240px) 0 0}
+.intro .display{font-size:clamp(2.6rem,6vw,6.4rem);line-height:.98;margin:20px 0 48px;max-width:18ch}
+.intro .lead{font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.2;max-width:26ch;margin-bottom:40px}
+.intro .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,64px);max-width:1100px}
+.intro .handoff{margin-top:clamp(64px,12vh,120px)}
+/* verdict: a flash, then the page turns light from here on */
+.verdict{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,16vh,180px) 0}
+.verdict .display{font-size:clamp(3rem,8.4vw,9.5rem);font-weight:100;line-height:.95;margin:20px 0 40px;max-width:14ch}
+.verdict .lead{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.4vw,2.2rem);line-height:1.25;max-width:28ch;color:var(--ink-dim)}
+body.light{--bg:#efe8dc;--bg-2:#e5dccc;--ink:#14110e;--ink-dim:rgba(20,17,14,.7);--ink-faint:rgba(20,17,14,.16);--signal:#d63c12}
+body.light .route{background:linear-gradient(to top, rgba(239,232,220,.94), rgba(239,232,220,0))}
+body.light .photo::after{background:radial-gradient(ellipse at 30% 50%, rgba(239,232,220,0), rgba(20,17,14,.35))}
+body.light .credits li{border-bottom-color:var(--ink-faint)}
+body.light::after{opacity:.05}
+body.light .chrome{mix-blend-mode:normal}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:90}
+.epilogue .lead{font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.2;max-width:26ch}
+.epilogue .display.sub-title{font-size:clamp(2.2rem,4.6vw,4.8rem);line-height:.98;max-width:18ch;margin:20px 0 32px}
+.epilogue .cols{margin-top:0}
+.epilogue .closing{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);max-width:1100px;margin:clamp(80px,14vh,160px) 0 0;
+  background:var(--bg-2);border:1px solid var(--ink-faint)}
+.epilogue .closing figure{margin:0}
+.epilogue .closing img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(.2)}
+.epilogue .closing-text{display:flex;flex-direction:column;justify-content:flex-end;gap:16px;padding:clamp(24px,3.5vw,48px)}
+.epilogue .closing-text .snap-cap{margin:0}
+.epilogue .closing-text .body{margin:0;color:var(--ink)}
+@media (max-width:760px){.epilogue .closing{grid-template-columns:1fr}}
+.snap-cap{margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);line-height:1.6}
+.photo.own img{filter:grayscale(.35) contrast(1.05) brightness(.7)}
+.gallery{height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,4vh,40px)}
+.g-track{display:flex;gap:clamp(20px,3vw,48px);padding:0 var(--gutter);width:max-content;align-items:flex-start}
+.gallery > .wrap{width:100%;box-sizing:border-box}
+.g-track figure{margin:0;width:min(78vw,calc((100svh - 320px) * 16 / 9))}
+.g-track img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;filter:grayscale(.35) contrast(1.05) brightness(.9)}
+.g-track figcaption{margin-top:14px;max-width:60ch;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);line-height:1.6}
+@media (max-width:760px){
+  .gallery{height:auto;padding:80px 0}
+  .g-track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .g-track figure{flex:0 0 85vw;scroll-snap-align:center}
+}
+.epilogue{padding:clamp(120px,20vh,220px) 0;border-top:1px solid var(--ink-faint)}
+.epilogue .display{font-size:clamp(3rem,9vw,9rem);margin:20px 0 48px;max-width:12ch}
+.epilogue .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,64px);max-width:1100px}
+.epilogue .body + .body{margin-top:1em}
+.credits{border-top:1px solid var(--ink-faint);padding:60px 0 140px;font-size:13px;color:var(--ink-dim)}
+.credits h4{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+.credits .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
+.credits ul{list-style:none}
+.credits li{padding:6px 0;border-bottom:1px solid rgba(239,232,220,.06)}
+.credits a{text-decoration:none;border-bottom:1px solid var(--ink-faint)}
+.credits a:hover{color:var(--ink)}
+
+/* ---------- reveal defaults (JS sets these) ---------- */
+.js .rv{opacity:0;transform:translateY(40px)}
+.reduced .rv{opacity:1!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){body::after{animation:none}}
+</style>
+</head>
+<body class="no-js">
+
+<div class="chrome" aria-hidden="true">
+  <span><b>Afghanistan to Calais</b> — A refugee story</span>
+  <span class="count"><span id="chapNow">00</span> / 11</span>
+</div>
+
+<nav class="route" id="route" aria-label="Journey progress">
+  <ol>
+    <div class="fill" id="routeFill"></div>
+    <li data-c="Afghanistan"><span>Afghanistan</span></li>
+    <li data-c="Iran"><span>Iran</span></li>
+    <li data-c="Turkey"><span>Turkey</span></li>
+    <li data-c="Bulgaria"><span>Bulgaria</span></li>
+    <li data-c="Serbia"><span>Serbia</span></li>
+    <li data-c="Hungary"><span>Hungary</span></li>
+    <li data-c="Italy"><span>Slovenia · Italy</span></li>
+    <li data-c="France"><span>France</span></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="bg"><img src="images/spinghar.jpg" alt=""></div>
+  <div class="wrap">
+    <p class="kicker rv">A refugee story · Calais, February 2016</p>
+    <h1 class="display" aria-label="Journey from Afghanistan to Calais">Journey from<br>Afghanistan<br>to Calais</h1>
+    <p class="hero-desc rv">This is the story of a young man who left eastern Afghanistan and spent six months crossing Europe to reach the English Channel. Eight borders, no passport, and ten attempts to get across, told in his own words in the Calais “Jungle”, weeks before it was torn down.</p>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap">
+    <p class="kicker rv">Calais, February 2016 · Name changed</p>
+    <h2 class="display rv">Karim is twenty-two, and he is trying to reach <span class="signal">England.</span></h2>
+    <p class="lead rv">In February 2016 he was living in the Calais “Jungle”, the camp on the French coast where thousands of people waited for a way across the Channel.</p>
+    <div class="cols">
+      <p class="body rv">He grew up in a village in Nangarhar, in eastern Afghanistan. When he was twenty-one the fighting reached his home. Land, cows and goats were sold to pay a smuggler $10,000 to get him out.</p>
+      <p class="body rv">Since then he has crossed eight borders without a passport. He has been beaten, locked up and fingerprinted, and walked through forests in the snow and rain. From Calais he has tried to reach England ten times.</p>
+    </div>
+    <p class="kicker handoff rv">He told me his story over tea in the camp. This is his journey, in his own words</p>
+  </div>
+</section>
+
+<!-- OPENING STATEMENT -->
+<section class="statement">
+  <div class="wrap">
+    <p class="reveal-words">When the war came, they destroyed our house. And I lost all my family.</p>
+    <p class="kicker attrib rv">Karim, on why he left</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="mapsec" id="map">
+  <div class="wrap">
+    <p class="kicker">The route</p>
+    <h2 class="display">Eight borders crossed without a passport</h2>
+    <svg id="routeMap" viewBox="0 0 1000 360" role="img" aria-label="Map of Karim's route from Jalalabad, Afghanistan, through Iran, Turkey, Bulgaria, Serbia, Hungary, Slovenia and Italy to Calais, France"></svg>
+    <p class="km"><b id="kmCount">0</b>kilometres, mostly at night</p>
+  </div>
+</section>
+
+<!-- 01 AFGHANISTAN -->
+<section class="chapter" data-country="Afghanistan" data-n="01">
+  <span class="num" aria-hidden="true">01</span>
+  <div class="wrap">
+    <p class="kicker rv">Nangarhar, Afghanistan</p>
+    <h2 class="display rv">Losing his home and family in Nangarhar</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">Karim grew up in a village of eight or nine hundred people in Nangarhar province, near Jalalabad. He had one brother. He went to school.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">He was twenty-one when the fighting reached his home. The house was destroyed. His family was killed. His uncle took him in, and kept him hidden for <strong>four days</strong>.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/home.jpg" alt="Wide valley between Jalalabad and Dara-i-Nur, with dry riverbed, green fields and mountains" data-parallax>
+    <figcaption>Between Jalalabad and Dara-i-Nur, Nangarhar</figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="stat">
+      <div class="n"><small>$</small><span data-count="10000" data-format="comma">0</span></div>
+      <div class="l rv">Raised by selling the family’s land, cows and goats, and handed to a smuggler</div>
+    </div>
+    <p class="quote pull rv">He take me from his home, morning time. We went to the city, and he give me to the agent.</p>
+  </div>
+</section>
+
+<!-- 02 IRAN -->
+<section class="chapter" data-country="Iran" data-n="02">
+  <span class="num" aria-hidden="true">02</span>
+  <div class="wrap">
+    <p class="kicker rv">Across Iran</p>
+    <h2 class="display rv">Hiding from the police across Iran</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">The smuggler drove him from Jalalabad to the Iranian border, packed into the back of a car with strangers. Inside Iran, the cars kept stopping. When the police appeared, everyone jumped out and ran.</p>
+        <p class="body rv">They hid in trees and scrub for one night, two nights, until the police left. Then they walked, eight or nine hours at a time, until another car came.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">After Tehran, they were put under a long-distance bus, <strong>in the space beside the tyres</strong>. Four of them.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/tehran.jpg" alt="Tehran skyline at dusk, the Milad tower silhouetted against an orange sky" data-parallax>
+    <div class="over"><p class="quote">We only ate the yogurt. Yogurt, with water.</p></div>
+    <figcaption>Tehran at dusk</figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="stat">
+      <div class="n"><span data-count="15">0</span><small style="vertical-align:0;font-size:.35em;margin-left:.08em">kg</small></div>
+      <div class="l rv">Body weight lost crossing Iran</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE: SIX MONTHS -->
+<section class="interlude" data-country="Iran">
+  <div>
+    <p class="display"><span class="signal">Six</span> months</p>
+    <p class="sub rv">Stuck in a mountain village on the Iran–Turkey border.<br>Something went wrong with the money. No one told him what.</p>
+  </div>
+</section>
+
+<!-- 03 TURKEY -->
+<section class="chapter" data-country="Turkey" data-n="03">
+  <span class="num" aria-hidden="true">03</span>
+  <div class="wrap">
+    <p class="kicker rv">The Turkish border</p>
+    <h2 class="display rv">Escaping a cage at the Turkish border</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">They were walked over the mountains, past the customs posts, down the other side. Then they were locked in a cage, a pen of wire and nails.</p>
+        <p class="body rv">They cut through it and ran. Seventeen people, one of them a woman, crammed into cars and driving themselves.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">An old house on the border. A bus ticket. <strong>Twenty-four hours</strong> to Istanbul.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/ararat.jpg" alt="Mount Ararat, snow-capped, rising above a wide plain" data-parallax>
+    <div class="over"><p class="quote">We cut the cage, and we run.</p></div>
+    <figcaption>Mount Ararat, near where Turkey meets Iran</figcaption>
+  </figure>
+</section>
+
+<!-- 04 BULGARIA -->
+<section class="chapter" data-country="Bulgaria" data-n="04" id="rain">
+  <canvas class="weather" id="weather" aria-hidden="true"></canvas>
+  <span class="num" aria-hidden="true">04</span>
+  <div class="wrap">
+    <p class="kicker rv">The Bulgarian border · Winter</p>
+    <h2 class="display rv">Beaten and pushed back at the Bulgarian border</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">From Istanbul a car took them to the edge of the forest. It was winter: snow, then rain. They ran through the trees and crossed into Bulgaria at dawn. Three nights walking. The food ran out.</p>
+        <p class="body rv">Bulgarian police caught them. Searched them. Took Karim’s jacket, and left him in a t-shirt in the rain.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">Then they were driven back to the Turkish border and beaten with sticks. Pushed back over the line.</p>
+        <p class="body rv">They walked four hours to find a village, drank tea, and took a car back to Istanbul. And then they <strong>started again</strong>.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/forest.jpg" alt="Bare trees at the edge of a snow-covered field under a white sky" data-parallax>
+    <div class="over"><p class="quote">They hit us, with sticks. This is so dangerous. It’s so bad.</p></div>
+    <figcaption>Winter treeline (illustrative)</figcaption>
+  </figure>
+  <div class="wrap">
+    <p class="quote pull right rv">They take my jacket. I only have one t-shirt, and the rain is so fast.</p>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">The second time, the smuggler’s house was raided at dawn. Dogs. Prison. Fingerprints. Then a closed camp for <strong>twenty-two days</strong>, and an open camp in Sofia for eight more, where he couldn’t leave without a card.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SERBIA -->
+<section class="chapter" data-country="Serbia" data-n="05">
+  <span class="num" aria-hidden="true">05</span>
+  <div class="wrap">
+    <p class="kicker rv">Serbia</p>
+    <h2 class="display rv">Three days in a forest near Hungary</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">A night drop at the Serbian border, a man who knew the way, a walk until morning. Directions written down: this bus, then that bus, then Belgrade.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">In a Belgrade park full of people like him, he phoned the agent. Someone came, and took them north to a forest near the Hungarian border. <strong>Three days</strong>, no tent, no sleep. Every day they cooked eggs on a fire.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo inset">
+    <img src="images/belgrade.jpg" alt="Young men sitting on the grass in a Belgrade park" data-parallax>
+    <figcaption>Manjež park, Belgrade</figcaption>
+  </figure>
+</section>
+
+<!-- 06 HUNGARY -->
+<section class="chapter" data-country="Hungary" data-n="06">
+  <span class="num" aria-hidden="true">06</span>
+  <div class="wrap">
+    <p class="kicker rv">Hungary</p>
+    <h2 class="display rv">Fingerprinted and sorted by nationality in Hungary</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">Hungarian police caught them at the border. A band went on each wrist: <strong>Afghan. Pakistani. Syrian. Iraqi.</strong> Sorted by nationality.</p>
+        <p class="body rv">Police station, then a container camp, then a train with sixty others, children and families among them, to a camp near the Romanian border. Fingerprints, again.</p>
+      </div>
+      <div class="b">
+        <p class="quote rv" style="font-size:clamp(1.6rem,2.6vw,2.6rem)">I asked her, why these fingers? She said, this is a European finger.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/fence.jpg" alt="Razor wire fence along the Hungarian border, with a border guard on a dirt track" data-parallax>
+    <figcaption>Hungary’s border barrier</figcaption>
+  </figure>
+  <div class="wrap">
+    <aside class="note rv">
+      <p class="kicker">Why the fingerprints matter</p>
+      <h3>Where you’re first recorded can decide where you’re allowed to claim asylum.</h3>
+      <p>Under EU law (the Dublin Regulation), fingerprints go into a shared database called Eurodac. If someone has no family or visa elsewhere in the EU, the country they first entered without permission is usually responsible for their asylum claim. Other EU countries can ask to transfer them back there, although in practice many transfers never happen.</p>
+      <p>Karim’s first fingerprints in the EU were taken in Bulgaria. Hungary and Italy took them again.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- 07 ITALY -->
+<section class="chapter" data-country="Italy" data-n="07">
+  <span class="num" aria-hidden="true">07</span>
+  <div class="wrap">
+    <p class="kicker rv">Slovenia → Italy</p>
+    <h2 class="display rv">Arriving in Italy with nothing</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">A car with blacked-out windows left at two in the morning. By dawn they were at the Slovenian border; four hours along the motorway, the driver stopped and let them out.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">No bags. No money left. The Italian police took their fingerprints, handed them a paper, and told them they weren’t responsible for them.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/trieste.jpg" alt="View over the rooftops of Trieste towards the Adriatic sea" data-parallax>
+    <div class="over"><p class="quote">We have nothing. Even no bags. Only our clothes.</p></div>
+    <figcaption>Trieste, the first Italian city after Slovenia</figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="stat">
+      <div class="n"><span data-count="17">0</span></div>
+      <div class="l rv">Nights sleeping on the street by a church. The shelters were full; it was cold and raining</div>
+    </div>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">A friend called from Milan: <em>why are you staying there?</em> Karim spent six months in Milan. He got a five-year permit. He picked grapes and oranges.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">Somewhere along the way he lost the agent’s number, his uncle’s number, everything. <strong>No phone, no Facebook, no one from his village.</strong> No way to tell his uncle he was alive.</p>
+      </div>
+    </div>
+    <p class="quote pull rv">I like Italy. But my friend said, there is no work. What are you doing here?</p>
+  </div>
+  <figure class="photo inset">
+    <img src="images/milan.jpg" alt="Milan cathedral lit up at night" data-parallax>
+    <figcaption>Milan, six months</figcaption>
+  </figure>
+</section>
+
+<!-- 08 FRANCE -->
+<section class="chapter" data-country="France" data-n="08">
+  <span class="num" aria-hidden="true">08</span>
+  <div class="wrap">
+    <p class="kicker rv">Calais, France</p>
+    <h2 class="display rv">Trying to reach England from Calais</h2>
+    <div class="cols">
+      <div class="a">
+        <p class="body rv">He arrived in the evening, in the dark. Outside the camp there was a market: men selling phones, cables, whatever they had. A friend found him a shelter and something to eat.</p>
+      </div>
+      <div class="b">
+        <p class="body rv">At night they go to the road and try to get into lorries heading for England. It is almost impossible: you can’t get inside, and when you’re caught, you’re dragged out.</p>
+      </div>
+    </div>
+  </div>
+  <figure class="photo">
+    <img src="images/calais.jpg" alt="The Calais jungle camp: tents, tarpaulins and smoke from fires on bare ground" data-parallax>
+    <div class="over"><p class="quote">When I reached here, I said: what is this? What is this life?</p></div>
+    <figcaption>The Calais “jungle”</figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="stat">
+      <div class="n"><span data-count="10">0</span></div>
+      <div class="l rv">Times he has tried to cross the Channel</div>
+    </div>
+  </div>
+  <div class="gallery" id="campGallery">
+    <div class="wrap"><p class="kicker">Photos from our days in the camp, February 2016</p></div>
+    <div class="g-track" id="gTrack">
+      <figure><img src="images/welcome-sign.jpg?v=2" alt="A hand-painted sign reading Welcome to Jungle in multicoloured letters"><figcaption>A hand-painted sign in the camp</figcaption></figure>
+      <figure><img src="images/not-terrorists.jpg?v=2" alt="Men in the camp holding a hand-painted banner reading: We are not terrorists, so don't destroy our homes"><figcaption>“We are not terrorists, so don’t destroy our homes”</figcaption></figure>
+      <figure><img src="images/afghan-signs.jpg?v=2" alt="Hand-painted Afghan flags and signs hanging in a tent, one reading: Afghanistan need to peace, than we never want to immigrate again"><figcaption>“Afghanistan need to peace, than we never want to immigrate again”</figcaption></figure>
+      <figure><img src="images/containers.jpg" alt="Rows of white shipping-container shelters behind a tall green metal fence"><figcaption>Container shelters inside the camp. To get a bed, people had to register with a palm-print scan, and many feared it would tie them to France</figcaption></figure>
+    </div>
+  </div>
+  <figure class="photo inset">
+    <img src="images/calaisfence.jpg" alt="A tall double security fence topped with wire along the road to the Calais port" data-parallax>
+    <figcaption>Fencing on the approach to the port</figcaption>
+  </figure>
+</section>
+
+<!-- LEDGER -->
+<section class="ledger" id="ledger">
+  <header>
+    <p class="kicker">The cost, so far</p>
+    <h2 class="display">What the journey has cost him</h2>
+  </header>
+  <div class="track" id="track">
+    <div class="card"><span class="tag">Afghanistan</span><div><div class="n signal">$10k</div><p>Land, cows and goats, sold to pay a smuggler</p></div></div>
+    <div class="card"><span class="tag">Iran</span><div><div class="n">15kg</div><p>Lost under buses and in the backs of cars, living on yogurt and water</p></div></div>
+    <div class="card"><span class="tag">Iran–Turkey border</span><div><div class="n">6mo</div><p>Waiting in a mountain village while the money was sorted out</p></div></div>
+    <div class="card"><span class="tag">Bulgaria</span><div><div class="n">22</div><p>Days locked in a closed camp</p></div></div>
+    <div class="card"><span class="tag">Serbia</span><div><div class="n">3</div><p>Days without sleep in a forest</p></div></div>
+    <div class="card"><span class="tag">Italy</span><div><div class="n">17</div><p>Nights on the street in the cold</p></div></div>
+    <div class="card"><span class="tag">Calais</span><div><div class="n signal">10</div><p>Attempts to reach England, and counting</p></div></div>
+  </div>
+</section>
+
+<!-- WHY ENGLAND -->
+<section class="statement" data-country="France">
+  <div class="wrap">
+    <p class="kicker rv" style="margin-bottom:28px">Why England?</p>
+    <p class="reveal-words">Men from my village went to England. Their families say they are happy. Since I was a child, I heard England is a good place.</p>
+  </div>
+</section>
+
+<!-- ENDING -->
+<section class="ending" data-country="France">
+  <div class="wrap">
+    <p class="kicker rv">February 2016</p>
+    <p class="display rv">“I want to reach<br><em>my destination.</em><br>Out of here.”</p>
+    <p class="body rv">Karim was twenty-two. He spoke English he picked up along the road, from smugglers, from other travellers, from the months spent waiting. He had crossed eight borders and lost everyone he grew up with, and he was still in Calais.</p>
+  </div>
+</section>
+
+<!-- EPILOGUE -->
+<section class="verdict" id="verdict">
+  <div class="wrap">
+    <p class="kicker">Afterwards</p>
+    <h2 class="display">He never made it to <span class="signal">England.</span></h2>
+    <p class="lead">I haven’t spoken with Karim in years. He never did make it to England, and I believe he settled in Italy.</p>
+  </div>
+</section>
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<section class="epilogue">
+  <div class="wrap">
+    <p class="kicker rv">About the recording</p>
+    <h3 class="display sub-title rv">I came to Calais to volunteer and ended up serving tea to the refugees.</h3>
+    <p class="body rv">In February 2016, some friends and I spent several days in the Calais “Jungle”, serving tea and biscuits in the Afghan area of the camp.</p>
+  </div>
+  <figure class="photo own">
+    <img src="images/chaihut.jpg?v=2" alt="A small plywood hut under a green mesh awning, with men in hooded jackets standing at its serving hatch on muddy ground" data-parallax>
+    <figcaption>The chai hut in the Afghan area of the camp</figcaption>
+  </figure>
+  <div class="wrap">
+    <div class="cols">
+      <p class="body rv">The chai hut was a little wooden hut under a green awning. We served tea and biscuits from it, and once a day a hot lunch made by another volunteer group. We took turns making the tea, and the rest of us chatted with whoever came over. There was nowhere to sit, so that’s how it went, standing around with cups of tea, talking.</p>
+      <p class="body rv">Karim was one of the men we got to know. He was helpful and lovely, and after talking with him a few times I asked if he’d mind us interviewing him to document his story. He was really keen to share it.</p>
+    </div>
+    <div class="closing rv">
+      <figure><img src="images/karim-and-shari.jpg" alt="Karim, his face blurred, in a black jacket and checked scarf, beside Shari, smiling in a knitted hat, in the camp on a sunny day" loading="lazy"></figure>
+      <div class="closing-text">
+        <p class="snap-cap">Karim and me in the camp, February 2016</p>
+        <p class="body">For years I thought I’d lost the recording. I’d always wanted to do something with it, so when I found it again I knew it was time to share his story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="credits">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h4>About this story</h4>
+        <p>Told from an interview recorded in the Calais camp in February 2016. His name has been changed and faces in the photos blurred to protect his identity. Karim’s words are quoted closely, lightly edited for clarity. Distances are approximate, measured along the roads between the places he named. The winter forest image is illustrative; the other photographs show the places in the story.</p>
+      </div>
+      <div>
+        <h4>Our photographs</h4>
+        <p>The chai hut, the signs, the container shelters and the photo of Karim and me were taken by me and my friends in the camp, February 2016.</p>
+        <h4 style="margin-top:28px">Other photographs · Wikimedia Commons</h4>
+        <ul>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Jalalabad_-_Sp%C4%ABn_Ghar_Range.JPG">Spin Ghar range</a> · Christopher Killalea · CC BY-SA 3.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Landscape_between_Jalalabad_and_Dari_Noor.jpg">Jalalabad to Dari Noor</a> · Todd Huffman · CC BY 2.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Tehran_at_night_in_spring.jpg">Tehran at night</a> · Sajjadmrt · CC0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Mount_Ararat,_Ararat_Plain,_Armenia-Turkey_border,_Armenia.jpg">Mount Ararat</a> · Vyacheslav Argenberg · CC BY 4.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Kirchspiel,_Bauerschaft_B%C3%B6rnste_--_2021_--_4406_(bw).jpg">Winter treeline</a> · Dietmar Rabich · CC BY-SA 4.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Refugees_in_Manje%C5%BE_park,_Belgrade.jpg">Manjež park, Belgrade</a> · Gmihail · CC BY-SA 3.0 RS</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Hungary_border_barrier.jpg">Hungary border barrier</a> · El Nuevo Doge · CC BY-SA 4.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Trieste_(28766391880).jpg">Trieste</a> · Nick Savchenko · CC BY-SA 2.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Duomo_in_Milan_at_night_01.jpg">Milan Duomo</a> · Mattsjc · CC BY 4.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Overview_of_Calais_Jungle.jpg">Calais jungle</a> · malachybrowne · CC BY 2.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Calais-jungle-fence_VOA_photo.jpg">Calais fence</a> · VOA / Nicolas Pinault · Public domain</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const body = document.body;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  body.classList.remove('no-js');
+  if (reduced) body.classList.add('reduced');
+
+  /* ---------- split words for reveal ---------- */
+  document.querySelectorAll('.reveal-words').forEach(p => {
+    const words = p.textContent.trim().split(/\s+/);
+    p.setAttribute('aria-label', p.textContent.trim());
+    p.innerHTML = words.map(w => `<span class="w" aria-hidden="true">${w}</span>`).join(' ');
+  });
+
+  /* ---------- route map ---------- */
+  const stops = [
+    {n:'Jalalabad', s:'Afghanistan', lon:70.45, lat:34.43, pos:'up', al:'end'},
+    {lon:68.0, lat:34.6},{lon:62.2, lat:34.35},
+    {n:'Tehran', s:'Iran', lon:51.39, lat:35.69, pos:'down'},
+    {n:'Border', s:'6 months', lon:44.2, lat:38.6, pos:'up'},
+    {n:'Istanbul', s:'Turkey', lon:28.98, lat:41.01, pos:'down'},
+    {n:'Sofia', s:'Bulgaria', lon:23.32, lat:42.70, pos:'down', al:'end'},
+    {n:'Belgrade', s:'Serbia', lon:20.46, lat:44.79, pos:'right'},
+    {n:'Szeged', s:'Hungary', lon:20.15, lat:46.25, pos:'up'},
+    {lon:14.5, lat:46.05},
+    {n:'Trieste', s:'Italy', lon:13.77, lat:45.65, pos:'down', al:'start'},
+    {n:'Milan', s:'6 months', lon:9.19, lat:45.46, pos:'down', al:'end'},
+    {n:'Calais', s:'France', lon:1.86, lat:50.95, end:true, pos:'right'}
+  ];
+  const X = lon => (lon + 1) * 13.4 + 8;
+  const Y = lat => (52.5 - lat) * 18.5;
+  const svg = document.getElementById('routeMap');
+  const NS = 'http://www.w3.org/2000/svg';
+  // faint latitude guides
+  for (let lat = 50; lat >= 35; lat -= 5){
+    const l = document.createElementNS(NS,'line');
+    l.setAttribute('x1',0); l.setAttribute('x2',1000); l.setAttribute('y1',Y(lat)); l.setAttribute('y2',Y(lat));
+    l.setAttribute('class','ghost'); svg.appendChild(l);
+  }
+  // smooth path
+  const pts = stops.map(p => [X(p.lon), Y(p.lat)]);
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length; i++){
+    const [x0,y0] = pts[i-1], [x1,y1] = pts[i];
+    const mx = (x0+x1)/2, my = (y0+y1)/2 + (i%2 ? -8 : 8);
+    d += ` Q${mx},${my} ${x1},${y1}`;
+  }
+  const path = document.createElementNS(NS,'path');
+  path.setAttribute('d', d); path.setAttribute('class','path'); svg.appendChild(path);
+  const cityEls = [];
+  // city markers with small label cards that sit over the line
+  const GAP = 10, PX = 8, PY = 6, cardLayouts = [];
+  stops.forEach((p,i) => {
+    if (!p.n) return;
+    const g = document.createElementNS(NS,'g');
+    g.setAttribute('class','city' + (p.end ? ' end' : ''));
+    const x = X(p.lon), y = Y(p.lat);
+    g.innerHTML = `<g class="card"><rect/><text class="nm" x="0" y="0">${p.n}</text><text class="sub" x="0" y="12">${p.s}</text></g>
+      <circle cx="${x}" cy="${y}" r="${p.end ? 6 : 4.5}"/>`;
+    g.dataset.idx = i;
+    svg.appendChild(g); cityEls.push(g);
+    const card = g.querySelector('.card'), rect = card.querySelector('rect');
+    const layout = () => {
+    card.removeAttribute('transform');
+    const [a, b] = [...card.querySelectorAll('text')].map(t => t.getBBox());
+    const tb = {x: Math.min(a.x, b.x), y: a.y, width: Math.max(a.x + a.width, b.x + b.width) - Math.min(a.x, b.x), height: b.y + b.height - a.y};
+    const w = tb.width + PX*2, h = tb.height + PY*2;
+    rect.setAttribute('x', tb.x - PX); rect.setAttribute('y', tb.y - PY);
+    rect.setAttribute('width', w); rect.setAttribute('height', h); rect.setAttribute('rx', 3);
+    // where the card's top-left corner should go
+    let cx, cy;
+    const alignX = al => al === 'start' ? x - 6 : al === 'end' ? x + 6 - w : x - w/2;
+    if (p.pos === 'up'){ cx = alignX(p.al); cy = y - GAP - h; }
+    else if (p.pos === 'down'){ cx = alignX(p.al); cy = y + GAP; }
+    else if (p.pos === 'left'){ cx = x - GAP - w; cy = y - h/2; }
+    else { cx = x + GAP + (p.end ? 2 : 0); cy = y - h/2; }
+    card.setAttribute('transform', `translate(${cx - (tb.x - PX)},${cy - (tb.y - PY)})`);
+    };
+    layout(); cardLayouts.push(layout);
+  });
+  if (document.fonts) document.fonts.ready.then(() => cardLayouts.forEach(f => f()));
+
+  /* ---------- weather (rain/snow) ---------- */
+  const cv = document.getElementById('weather');
+  const ctx = cv.getContext('2d');
+  let drops = [], raining = false, rafId;
+  function sizeWeather(){
+    const r = cv.parentElement.getBoundingClientRect();
+    cv.width = innerWidth; cv.height = innerHeight;
+    drops = Array.from({length: Math.min(260, innerWidth/4)}, () => ({
+      x: Math.random()*cv.width, y: Math.random()*cv.height,
+      l: 10 + Math.random()*22, v: 9 + Math.random()*10
+    }));
+  }
+  function rain(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    ctx.strokeStyle = 'rgba(239,232,220,.16)'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (const p of drops){
+      ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.l*.18, p.y + p.l);
+      p.y += p.v; p.x -= p.v*.18;
+      if (p.y > cv.height){ p.y = -p.l; p.x = Math.random()*cv.width*1.2; }
+    }
+    ctx.stroke();
+    if (raining) rafId = requestAnimationFrame(rain);
+  }
+  // weather canvas is sticky within its section
+  cv.style.position = 'sticky'; cv.style.top = '0'; cv.style.height = '100vh'; cv.style.marginBottom = '-100vh'; cv.style.display = 'block';
+  sizeWeather(); addEventListener('resize', sizeWeather);
+
+  /* ---------- route bar + chapter counter ---------- */
+  const order = ['Afghanistan','Iran','Turkey','Bulgaria','Serbia','Hungary','Italy','France'];
+  const lis = [...document.querySelectorAll('#route li')];
+  const fill = document.getElementById('routeFill');
+  const chapNow = document.getElementById('chapNow');
+  function setCountry(c){
+    const idx = order.indexOf(c);
+    lis.forEach((li,i) => { li.classList.toggle('done', i <= idx); li.classList.toggle('now', i === idx); });
+    const li = lis[idx];
+    if (li) fill.style.width = (li.offsetLeft + (idx === lis.length-1 ? li.offsetWidth : 4)) + 'px';
+  }
+
+  if (typeof gsap === 'undefined' || reduced){
+    // static fallback
+    document.querySelectorAll('[data-count]').forEach(el => el.textContent = Number(el.dataset.count).toLocaleString('en-GB'));
+    document.getElementById('kmCount').textContent = '7,500+';
+    const vd = document.getElementById('verdict');
+    addEventListener('scroll', () => body.classList.toggle('light', vd.getBoundingClientRect().top < innerHeight * .45), {passive: true});
+    
+    if (!reduced){ raining = true; rain(); }
+    return;
+  }
+
+  body.classList.add('js');
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* smooth scroll */
+  if (window.Lenis){
+    const lenis = new Lenis({lerp: .09});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /* hero intro */
+  const h1 = document.querySelector('.hero h1');
+  h1.innerHTML = h1.innerHTML.split(/<br\s*\/?>/).map(l => l.trim().split(/\s+/).map(w => `<span class="ch" aria-hidden="true">${w}</span>`).join(' ')).join('<br>');
+  gsap.from('.hero h1 .ch', {yPercent: 110, opacity: 0, duration: 1.4, ease: 'expo.out', stagger: .1, delay: .2});
+  gsap.to('.hero .rv', {opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: .2, delay: .7});
+  gsap.from('.hero .bg img', {scale: 1.2, duration: 2.6, ease: 'expo.out'});
+  gsap.to('.hero .bg img', {yPercent: 12, ease: 'none', scrollTrigger: {trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true}});
+  gsap.to('.hero h1', {yPercent: -30, opacity: .2, ease: 'none', scrollTrigger: {trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true}});
+
+  /* generic reveals */
+  document.querySelectorAll('.rv').forEach(el => {
+    if (el.closest('.hero')) return;
+    gsap.to(el, {opacity: 1, y: 0, duration: 1.1, ease: 'expo.out',
+      scrollTrigger: {trigger: el, start: 'top 88%'}});
+  });
+
+  /* section headings: clip rise */
+  document.querySelectorAll('.chapter h2').forEach(h => {
+    gsap.fromTo(h, {clipPath: 'inset(-10% -5% 100% -5%)', y: 60}, {clipPath: 'inset(-10% -5% -25% -5%)', y: 0, opacity: 1, duration: 1.4, ease: 'expo.out', clearProps: 'clipPath',
+      scrollTrigger: {trigger: h, start: 'top 85%'}});
+  });
+
+  /* word reveal scrub */
+  document.querySelectorAll('.reveal-words').forEach(p => {
+    gsap.to(p.querySelectorAll('.w'), {opacity: 1, stagger: .1, ease: 'none',
+      scrollTrigger: {trigger: p, start: 'top 80%', end: 'bottom 45%', scrub: true}});
+  });
+
+  /* outlined chapter numbers drift */
+  document.querySelectorAll('.chapter .num').forEach(n => {
+    gsap.fromTo(n, {yPercent: 30}, {yPercent: -40, ease: 'none',
+      scrollTrigger: {trigger: n.parentElement, start: 'top bottom', end: 'bottom top', scrub: true}});
+  });
+
+  /* photo parallax + scale-in */
+  document.querySelectorAll('.photo').forEach(f => {
+    const img = f.querySelector('img');
+    gsap.fromTo(img, {yPercent: -8, scale: 1.15}, {yPercent: 8, scale: 1, ease: 'none',
+      scrollTrigger: {trigger: f, start: 'top bottom', end: 'bottom top', scrub: true}});
+    gsap.fromTo(f, {clipPath: 'inset(12% 6% 12% 6%)'}, {clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+      scrollTrigger: {trigger: f, start: 'top 95%', end: 'top 30%', scrub: true}});
+    const q = f.querySelector('.over .quote');
+    if (q) gsap.fromTo(q, {opacity: 0, y: 50}, {opacity: 1, y: 0, ease: 'none',
+      scrollTrigger: {trigger: f, start: 'top 60%', end: 'center 50%', scrub: true}});
+  });
+
+  /* counters */
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.dataset.count, o = {v: 0};
+    gsap.to(o, {v: target, duration: 2.2, ease: 'power3.out',
+      scrollTrigger: {trigger: el, start: 'top 85%'},
+      onUpdate: () => el.textContent = Math.round(o.v).toLocaleString('en-GB')});
+  });
+
+  /* map: pin, draw path, reveal cities, count km */
+  const len = path.getTotalLength();
+  path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+  gsap.set(cityEls, {opacity: 0});
+  const km = document.getElementById('kmCount');
+  const mapTl = gsap.timeline({scrollTrigger: {trigger: '#map', start: 'top top', end: '+=180%', pin: true, scrub: .6}});
+  mapTl.to(path, {strokeDashoffset: 0, ease: 'none', duration: 1}, 0);
+  mapTl.to({v:0}, {v: 7500, ease: 'none', duration: 1, onUpdate(){ km.textContent = Math.round(this.targets()[0].v).toLocaleString('en-GB'); }}, 0);
+  cityEls.forEach(g => {
+    const i = +g.dataset.idx;
+    mapTl.to(g, {opacity: 1, duration: .05}, (i / (stops.length - 1)) * .97);
+  });
+  ScrollTrigger.create({trigger: '#map', start: 'top 60%', onEnter: () => document.getElementById('route').classList.add('on'),
+    onLeaveBack: () => document.getElementById('route').classList.remove('on')});
+
+  /* verdict: white flash, and the page switches to light under it */
+  const verdict = document.getElementById('verdict'), flash = document.getElementById('flash');
+  const flip = on => gsap.timeline()
+    .fromTo(flash, {opacity: 0}, {opacity: .95, duration: .08, ease: 'none'})
+    .add(() => body.classList.toggle('light', on))
+    .to(flash, {opacity: 0, duration: 1, ease: 'power2.out'});
+  ScrollTrigger.create({trigger: verdict, start: 'top 45%', onEnter: () => flip(true), onLeaveBack: () => flip(false)});
+  gsap.from(verdict.querySelectorAll('.kicker, .display, .lead'), {y: 40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .12,
+    scrollTrigger: {trigger: verdict, start: 'top 45%'}});
+
+  /* interlude scale */
+  document.querySelectorAll('.interlude .display').forEach(d => {
+    gsap.fromTo(d, {scale: .6, opacity: 0}, {scale: 1, opacity: 1, ease: 'none',
+      scrollTrigger: {trigger: d.closest('section'), start: 'top 80%', end: 'center center', scrub: true}});
+  });
+
+  /* country tracking */
+  document.querySelectorAll('[data-country]').forEach(sec => {
+    ScrollTrigger.create({trigger: sec, start: 'top 55%', end: 'bottom 55%',
+      onToggle: s => { if (s.isActive){ setCountry(sec.dataset.country); if (sec.dataset.n) chapNow.textContent = sec.dataset.n; } }});
+  });
+  ScrollTrigger.create({trigger: '#ledger', start: 'top 55%', onEnter: () => chapNow.textContent = '09', onLeaveBack: () => chapNow.textContent = '08'});
+  ScrollTrigger.create({trigger: '.ending', start: 'top 55%', onEnter: () => chapNow.textContent = '11', onLeaveBack: () => chapNow.textContent = '09'});
+  document.querySelectorAll('.statement[data-country]').forEach(s => ScrollTrigger.create({trigger: s, start: 'top 55%', onEnter: () => chapNow.textContent = '10'}));
+
+  /* rain only while Bulgaria chapter is on screen */
+  ScrollTrigger.create({trigger: '#rain', start: 'top bottom', end: 'bottom top',
+    onToggle: s => { raining = s.isActive; cancelAnimationFrame(rafId); if (raining) rain(); else ctx.clearRect(0,0,cv.width,cv.height); }});
+
+  /* camp photos: horizontal scroll (desktop only) */
+  ScrollTrigger.matchMedia({
+    '(min-width: 761px)': function(){
+      const gt = document.getElementById('gTrack');
+      const gd = () => Math.max(0, gt.scrollWidth - innerWidth);
+      gsap.to(gt, {x: () => -gd(), ease: 'none',
+        scrollTrigger: {trigger: '#campGallery', start: 'top top', end: () => '+=' + gd(), pin: true, scrub: .6, invalidateOnRefresh: true}});
+    }
+  });
+
+  /* ledger: horizontal scroll (desktop only) */
+  ScrollTrigger.matchMedia({
+    '(min-width: 761px)': function(){
+      const track = document.getElementById('track');
+      const dist = () => track.scrollWidth - innerWidth;
+      gsap.to(track, {x: () => -dist(), ease: 'none',
+        scrollTrigger: {trigger: '#ledger', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: .6, invalidateOnRefresh: true}});
+    }
+  });
+  ScrollTrigger.sort();
+
+  /* fonts can shift layout; refresh once loaded */
+  if (document.fonts) document.fonts.ready.then(() => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+  addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
